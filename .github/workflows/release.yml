@@ -1,10 +1,10 @@
 name: Windows sürümü derle
 
-# "v1.0.2" gibi bir etiket gönderildiğinde Windows paketini derler ve Releases'e ekler.
+# GitHub'da bir Release yayınlandığında (etiket: v1.0.2 gibi) Windows paketini derler ve o Release'e ekler.
 # Actions sekmesinden "Run workflow" ile elle de çalıştırılabilir (sadece derler, indirilebilir dosya bırakır).
 on:
-  push:
-    tags: ['v*']
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -55,11 +55,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          name: DKIP ${{ github.ref_name }}
           files: DKIP-Windows.zip
-          body: |
-            **Windows için DKIP IPTV oynatıcı**
-
-            1. `DKIP-Windows.zip` dosyasını indirip bir klasöre çıkarın.
-            2. `DKIP\DKIP.exe` dosyasını çalıştırın (kurulum gerekmez).
-            3. Windows "Bilinmeyen yayımcı" uyarısı verirse **Ek bilgi → Yine de çalıştır** deyin.

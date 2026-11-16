@@ -42,13 +42,12 @@ npm run dist       # Windows paketini dist/ klasörüne derler
 
 ## Yeni sürüm yayınlama
 
-`package.json` içindeki sürümü güncelleyip bir etiket gönderin; GitHub Actions Windows paketini derleyip
-[Releases](https://github.com/dkarakurt/dkip/releases) sayfasına ekler:
+1. GitHub'da **Releases → Draft a new release** sayfasını açın.
+2. **Choose a tag** kutusuna yeni sürümü yazın (ör. `v1.0.2`) ve **Create new tag** deyin.
+3. Başlık ve açıklamayı girip **Publish release**'e basın.
 
-```bash
-git tag v1.0.2
-git push origin v1.0.2
-```
+GitHub Actions birkaç dakika içinde Windows paketini derleyip `DKIP-Windows.zip` olarak o sürüme ekler.
+Uygulamanın sürüm numarası etiketten otomatik alınır.
 
 İndirme linki her zaman en son sürümü gösterir:
 `https://github.com/dkarakurt/dkip/releases/latest/download/DKIP-Windows.zip`
