@@ -1,0 +1,35 @@
+DKIP - IPTV Oynatıcı (Windows)
+==============================
+
+KURULUM
+1. Bu klasörü istediğiniz bir yere çıkarın (ör. C:\DKIP).
+2. DKIP.exe'ye çift tıklayın. Kurulum gerekmez.
+   İsterseniz DKIP.exe'ye sağ tıklayıp "Masaüstüne kısayol oluştur" deyin.
+   İlk açılışta Windows SmartScreen "Bilinmeyen yayımcı" uyarısı verebilir:
+   "Ek bilgi" > "Yine de çalıştır" deyin.
+
+GİRİŞ
+- Sunucu URL'si, kullanıcı adı ve şifrenizi girin (Xtream Codes).
+- Sağlayıcınızın verdiği M3U linkini (get.php?username=...&password=...)
+  sunucu alanına yapıştırırsanız bilgiler otomatik doldurulur.
+- "Bu hesabı hatırla" seçiliyse sonraki açılışta otomatik giriş yapılır.
+
+BÖLÜMLER
+- Canlı TV : kategori > kanal listesi > sağda oynatıcı ve yayın akışı (EPG)
+- Filmler  : afiş ızgarası > detay > İzle / Devam et
+- Diziler  : afiş ızgarası > sezonlar > bölümler (sonraki bölüm otomatik başlar)
+- Her bölümde: arama, ★ Favoriler, "İzlemeye devam et" (Filmler/Diziler)
+
+KISAYOLLAR
+- 1 / 2 / 3       : Canlı TV / Filmler / Diziler
+- Ctrl+F          : Ara
+- Canlı TV'de ↑ ↓ : Kanal değiştir    F: tam ekran    M: sessiz
+- Oynatıcıda      : Boşluk oynat/duraklat, ← → 10 sn, ↑ ↓ ses, F tam ekran, N sonraki bölüm, Esc geri
+- F11             : Pencereyi tam ekran yap
+
+SORUN GİDERME
+- Bir kanal açılmazsa: Hesap > "Canlı yayın formatı"nı değiştirin (TS / HLS).
+- Bazı filmler (MKV, HEVC/H.265, AC3 ses) dahili oynatıcıda açılmayabilir.
+  Bu durumda "VLC'de aç" düğmesini kullanın (VLC kurulu olmalı:
+  https://www.videolan.org). VLC bulunamazsa yayın bağlantısı panoya kopyalanır.
+- Liste güncel değilse: Hesap > "Listeleri yenile".

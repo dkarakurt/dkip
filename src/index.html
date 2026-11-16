@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data: blob: http: https:; media-src * data: blob:; img-src * data: blob:; connect-src *">
+  <title>DKIP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- GİRİŞ -->
+<div id="login" class="login">
+  <div class="login-card">
+    <div class="brand big"><span class="brand-mark">DK</span><span class="brand-text">IP</span></div>
+    <p class="muted">IPTV sağlayıcınızın bilgileriyle giriş yapın</p>
+    <form id="loginForm" autocomplete="off">
+      <label>Sunucu URL'si
+        <input id="fServer" placeholder="http://ornek.sunucu.com:8080" required>
+      </label>
+      <label>Kullanıcı adı
+        <input id="fUser" required>
+      </label>
+      <label>Şifre
+        <div class="pw">
+          <input id="fPass" type="password" required>
+          <button type="button" id="pwToggle" class="ghost small">Göster</button>
+        </div>
+      </label>
+      <label class="check"><input type="checkbox" id="fRemember" checked> Bu hesabı hatırla</label>
+      <div id="loginError" class="error" hidden></div>
+      <button type="submit" id="loginBtn" class="primary">Giriş yap</button>
+      <p class="hint">İpucu: Sağlayıcınızın verdiği M3U linkini (get.php?username=…&amp;password=…) sunucu alanına yapıştırırsanız bilgiler otomatik dolar.</p>
+    </form>
+    <div id="savedProfiles" class="profiles"></div>
+  </div>
+</div>
+
+<!-- UYGULAMA -->
+<div id="app" class="app" hidden>
+  <nav class="rail">
+    <div class="brand"><span class="brand-mark">DK</span><span class="brand-text">IP</span></div>
+    <button class="rail-btn active" data-section="live">
+      <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 2l4 4 4-4"/></svg>
+      <span>Canlı TV</span>
+    </button>
+    <button class="rail-btn" data-section="movie">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4"/></svg>
+      <span>Filmler</span>
+    </button>
+    <button class="rail-btn" data-section="series">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M6 3h12M9 11l5 3-5 3z"/></svg>
+      <span>Diziler</span>
+    </button>
+    <div class="rail-spacer"></div>
+    <button class="rail-btn" id="btnAccount" title="Hesap">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      <span>Hesap</span>
+    </button>
+  </nav>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 id="sectionTitle">Canlı TV</h1>
+      <div class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input id="search" placeholder="Ara…">
+      </div>
+      <div id="status" class="status"></div>
+    </header>
+    <div class="body" id="body">
+      <aside class="cats" id="cats"></aside>
+      <section class="content" id="content"></section>
+      <section class="livepane" id="livepane">
+        <div class="live-video" id="liveVideoWrap">
+          <video id="liveVideo" controls playsinline></video>
+          <div class="video-msg" id="liveMsg"></div>
+          <div class="live-empty" id="liveEmpty">
+            <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 2l4 4 4-4"/></svg>
+            <p>İzlemek için bir kanal seçin</p>
+          </div>
+        </div>
+        <div class="live-info">
+          <div class="live-head">
+            <img id="liveLogo" alt="">
+            <div>
+              <div id="liveName" class="live-name">—</div>
+              <div class="muted small">↑ ↓ ile kanal değiştir · çift tık: tam ekran</div>
+            </div>
+          </div>
+          <div class="live-actions">
+            <button class="ghost small" id="liveFull">Tam ekran</button>
+            <button class="ghost small" id="liveVlc">VLC'de aç</button>
+            <button class="ghost small" id="liveFav">☆ Favori</button>
+          </div>
+          <div id="epg" class="epg"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- DETAY (Film / Dizi) -->
+<div id="detail" class="modal" hidden>
+  <div class="modal-card">
+    <button class="close" id="detailClose">✕</button>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<!-- HESAP -->
+<div id="account" class="modal" hidden>
+  <div class="modal-card narrow">
+    <button class="close" id="accountClose">✕</button>
+    <h2>Hesap</h2>
+    <div id="accountBody"></div>
+    <h3>Ayarlar</h3>
+    <label class="row">Canlı yayın formatı
+      <select id="setFormat">
+        <option value="ts">MPEG-TS (.ts) — önerilen</option>
+        <option value="m3u8">HLS (.m3u8)</option>
+      </select>
+    </label>
+    <label class="row">VLC yolu (isteğe bağlı)
+      <input id="setVlc" placeholder="C:\Program Files\VideoLAN\VLC\vlc.exe">
+    </label>
+    <div class="modal-actions">
+      <button class="ghost" id="btnReload">Listeleri yenile</button>
+      <button class="danger" id="btnLogout">Çıkış yap</button>
+    </div>
+    <p class="muted small" id="versionInfo"></p>
+  </div>
+</div>
+
+<!-- OYNATICI -->
+<div id="player" class="player" hidden>
+  <video id="vodVideo" controls playsinline></video>
+  <div class="video-msg" id="vodMsg"></div>
+  <div class="player-top">
+    <button class="ghost" id="playerBack">← Geri</button>
+    <div class="player-title" id="playerTitle"></div>
+    <button class="ghost small" id="playerNext" hidden>Sonraki bölüm →</button>
+    <button class="ghost small" id="playerVlc">VLC'de aç</button>
+    <button class="ghost small" id="playerFull">Tam ekran</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="../node_modules/hls.js/dist/hls.min.js"></script>
+<script src="../node_modules/mpegts.js/dist/mpegts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

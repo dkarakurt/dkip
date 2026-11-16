@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DKIP — Windows için IPTV Oynatıcı</title>
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bg:#0b0d12; --panel:#12151d; --line:#232838; --text:#e8eaf0; --muted:#8a91a6; --a:#ffb020; --b:#ff6a3d; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:radial-gradient(900px 500px at 15% 0%, rgba(255,176,32,.12), transparent 60%), var(--bg);
+    color:var(--text); font-family:"Segoe UI", system-ui, sans-serif; line-height:1.6; }
+  .wrap { max-width:880px; margin:0 auto; padding:72px 24px; }
+  header { display:flex; align-items:center; gap:18px; }
+  header img { width:76px; height:76px; }
+  h1 { font-size:46px; margin:0; letter-spacing:.5px; }
+  .lead { font-size:19px; color:var(--muted); margin:18px 0 30px; max-width:620px; }
+  .btn { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,var(--a),var(--b)); color:#1a1205;
+    font-weight:700; font-size:17px; padding:14px 24px; border-radius:10px; text-decoration:none; }
+  .btn:hover { filter:brightness(1.07); }
+  .sub { color:var(--muted); font-size:13px; margin-top:10px; }
+  .sub a { color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:56px 0; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px; }
+  .card h3 { margin:0 0 6px; color:var(--a); font-size:17px; }
+  .card p { margin:0; color:var(--muted); font-size:14px; }
+  h2 { font-size:22px; margin:0 0 12px; }
+  ol { color:#c9cdda; padding-left:20px; }
+  code { background:var(--panel); border:1px solid var(--line); padding:1px 6px; border-radius:5px; }
+  footer { color:var(--muted); font-size:12px; margin-top:56px; border-top:1px solid var(--line); padding-top:18px; }
+  footer a { color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="icon.png" alt=""><h1>DKIP</h1></header>
+  <p class="lead">Windows için sade ve hızlı IPTV oynatıcı. Sağlayıcınızın verdiği sunucu adresi, kullanıcı adı ve şifre ile giriş yapın; canlı TV, film ve dizileriniz tek yerde.</p>
+  <a class="btn" href="https://github.com/dkarakurt/dkip/releases/latest/download/DKIP-Windows.zip">⬇ Windows için indir</a>
+  <div class="sub">Windows 10 / 11 · 64 bit · Kurulum gerektirmez · <a href="https://github.com/dkarakurt/dkip/releases">Tüm sürümler</a></div>
+
+  <div class="grid">
+    <div class="card"><h3>Canlı TV</h3><p>Kategoriler, kanal listesi ve yayın akışı. Ok tuşlarıyla kanal değiştirin.</p></div>
+    <div class="card"><h3>Filmler</h3><p>Afişli film arşivi, detaylar ve kaldığınız yerden devam etme.</p></div>
+    <div class="card"><h3>Diziler</h3><p>Sezon ve bölüm listesi; bir bölüm bitince sonraki otomatik başlar.</p></div>
+  </div>
+
+  <h2>Kurulum</h2>
+  <ol>
+    <li><b>DKIP-Windows.zip</b> dosyasını indirip bir klasöre çıkarın.</li>
+    <li><code>DKIP\DKIP.exe</code> dosyasını çalıştırın.</li>
+    <li>Windows “Bilinmeyen yayımcı” uyarısı verirse <b>Ek bilgi → Yine de çalıştır</b> deyin.</li>
+    <li>IPTV sağlayıcınızın sunucu adresi, kullanıcı adı ve şifresiyle giriş yapın.</li>
+  </ol>
+
+  <footer>DKIP yalnızca bir oynatıcıdır; içinde kanal veya içerik bulunmaz. İçerik kullanıcının kendi IPTV aboneliğinden gelir. · <a href="https://github.com/dkarakurt/dkip">Kaynak kod</a></footer>
+</div>
+</body>
+</html>

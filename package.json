@@ -1,0 +1,26 @@
+{
+  "name": "dkip",
+  "version": "1.0.1",
+  "description": "DKIP - IPTV Oynatıcı",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-packager . DKIP --platform=win32 --arch=x64 --out=dist --overwrite --asar --icon=assets/icon.ico --ignore=^/dist --ignore=^/docs --ignore=^/.github --app-version=$npm_package_version"
+  },
+  "keywords": [],
+  "author": "DKIP",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^33.4.11"
+  },
+  "dependencies": {
+    "hls.js": "^1.7.4",
+    "mpegts.js": "^1.8.2"
+  },
+  "productName": "DKIP",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dkarakurt/dkip"
+  }
+}
